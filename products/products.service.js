@@ -1,5 +1,5 @@
 const { CustomError } = require("../errors/customErrorManager")
-const { insertarProducto, seleccionarProductoPorId, deleteProductoPorId, seleccionarProductos } = require("./products.repository")
+const { insertarProducto, seleccionarProductoPorId, deleteProductoPorId, seleccionarProductos,ActualizarProducto } = require("./products.repository")
 const { validarPropiedadesProducto } = require("./utils/validarProducto")
 
 const crearProducto = async (producto) =>{
@@ -71,8 +71,23 @@ const buscarProductos = async () => {
     }
 } 
 
+const updateProductos = async (pid) => {
+    try{
+        const productos = await ActualizarProducto(pid)
+        return {ok:true, status:200, productos}
+    }
+    catch (error){
+        if(error.status){
+            throw error
+        }
+        else{
+            throw {status:500, message: "Error interno del servidor"}
+        }
+    }
+}
 
-module.exports = {crearProducto, obtenerProductoPorId, eliminarProductoPorId, buscarProductos}
+
+module.exports = {crearProducto, obtenerProductoPorId, eliminarProductoPorId, buscarProductos, updateProductos}
 
 
 

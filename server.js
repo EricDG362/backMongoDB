@@ -1,14 +1,14 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const cors = require('cors')
-dotenv.config()
+dotenv.config()  //CONFIGURA EL.ENV PARA MAS ABAJO LACONEXION
 
 // const {database} = require('./config/connection.sql')
 
 const { authRouter } = require('./auth/auth.router')
 const { productRouter } = require('./products/products.router')
 const { cartsRouter } = require('./carts/carts.router')
-const {conectionMongoose} = require ('./config/connection.mongodb')
+const {conectionMongoose} = require ('./config/connection.mongodb') //CONEXION
 
 
 

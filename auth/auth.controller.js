@@ -28,6 +28,8 @@ const registerController = async (req, res) =>{
     }
 }
 
+
+
 const verifyTokenController = (req, res) =>{
     const token = req.headers['authorization']
 

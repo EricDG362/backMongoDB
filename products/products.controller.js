@@ -1,7 +1,7 @@
 
 
 
-const { crearProducto, obtenerProductoPorId, eliminarProductoPorId, buscarProductos } = require("./products.service")
+const { crearProducto, obtenerProductoPorId, eliminarProductoPorId, buscarProductos,updateProductos } = require("./products.service")
 
 const postProductController = async (req, res) =>{
  
@@ -51,7 +51,19 @@ const getAllProducts = async (req, res) => {
     }
 }
 
+const putProductController = async (req, res) => {
+    try{
+        const{pid} = req.params //obtenemos el producto por id
+        const result = await updateProductos(pid)
+        res.status(200).json(result)
+    }
+    catch(error){
+        
+        res.status(error.status).json(error)
+    }
+}
 
 
 
-module.exports = {postProductController, getProductByIdController, deleteProductByIdController, getAllProducts}
+
+module.exports = {postProductController, getProductByIdController, deleteProductByIdController, getAllProducts, putProductController}

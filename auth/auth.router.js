@@ -11,6 +11,9 @@ authRouter.post('/register', registerController)
 /* /api/auth/login */
 authRouter.post('/login', loginController)
 
+
+
+
 /* /api/auth/verify-token */
 authRouter.get('/verify-token', verifyTokenController)
 

@@ -102,5 +102,26 @@ const seleccionarProductos = async () =>{
     }
 }
 
+const ActualizarProducto = async (pid) =>{
+    try{
+    const resultado = await Product.findByIdAndUpdate({pid})
+    if(!resultado){ //SINO HAY O SEA VIENE NULL
+        throw {status: 404, message: 'Producto con id ' + pid + ' no existe'}
+    }//DE LO CONTRTARIO MUESTRA A QUIEN actualizo
+    return {status: 200, message: 'Producto con id ' + pid + ' actualizado correctamente'}   
+}
 
-module.exports = { insertarProducto, seleccionarProductoPorId, deleteProductoPorId, seleccionarProductos}
+catch(error){
+    
+    if(error.status === 404){
+        throw error
+    }
+    else{ 
+        throw {status:500, message: 'Error interno en el servidor'}           
+    }      
+}
+
+}
+
+
+module.exports = { insertarProducto, seleccionarProductoPorId, deleteProductoPorId, seleccionarProductos, ActualizarProducto}
